@@ -1,0 +1,83 @@
+<div class="signup d-flex align-items-center">
+
+<div class="container shadow p-3 mb-5 bg-body  ">
+  <div class="text-center mb-5">
+    <h1>Sign up</h1>
+  </div>
+  <form [formGroup]="signupForm">
+    <div class="row">
+    <div class="col-md-6 col-xs-12 mt-2 ">
+      <label  class="form-label">Name:</label>
+      <input type="text" class="form-control" formControlName="name"  [(ngModel)]="inputText" (keyup)="onKeyUp()">
+      <div class="text-danger"
+        *ngIf="name?.invalid && ( name?.dirty ||name?.touched)">
+        <ul class="list-unstyled">
+          <li *ngIf="name?.errors?.required"> * Name is required</li>
+          <li *ngIf="name?.errors?.pattern"> * special characters not allowed </li>
+          <li *ngIf="errorMessage"> * only english characters is allowed</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6 col-xs-12 mt-2 ">
+      <label class="form-label">Nationality:</label>
+      <select class="form-control form-select form-select-solid" id="incidentType" name="incidentType"
+      formControlName="nationality">
+      <option selected>select</option>
+      <option *ngFor="let option of ICountries" value={{option.countryName}}>
+        {{option.countryName}}
+      </option>
+    </select>
+      <!-- <input type="text" class="form-control" formControlName="nationality"> -->
+      <div class="text-danger"
+        *ngIf="nationality?.invalid && ( nationality?.dirty ||nationality?.touched)">
+        <p *ngIf="nationality?.errors?.required"> * Nationality is required </p>
+      </div>
+    </div>
+    <div class="col-md-6 col-xs-12 mt-2 ">
+      <label class="form-label">Email:</label>
+      <input type="email" class="form-control" formControlName="email">
+      <div class="text-danger"
+        *ngIf="email?.invalid && ( email?.dirty ||email?.touched)">
+        <p *ngIf="email?.errors?.required"> * Email is required </p>
+      </div>
+    </div>
+    <div class="col-md-6 col-xs-12 mt-2 ">
+      <label class="form-label">Password:</label>
+      <input type="password" class="form-control" formControlName="password">
+      <div class="text-danger"
+        *ngIf="password?.invalid && ( password?.dirty ||password?.touched)">
+        <p *ngIf="password?.errors?.required"> * password is required </p>
+        <p *ngIf="password?.errors?.pattern"> * Minimum eight characters, at least one uppercase letter, one lowercase letter, one number , one special character and does not contain any Arabic letters. </p>
+      </div>
+    </div>
+    <div class="col-md-6 col-xs-12 mt-2 ">
+      <label class="form-label">Password Confirmation:</label>
+      <input type="password" class="form-control" formControlName="confirmPassword">
+      <div class="text-danger"
+        *ngIf="confirmPassword?.invalid && ( confirmPassword?.dirty ||confirmPassword?.touched)">
+        <p *ngIf="confirmPassword?.errors?.required"> * password Confirmation is required </p>
+        <p *ngIf="confirmPassword?.errors?.passwordsNotMatch"> * passwords No tMatch </p>
+      </div>
+    </div>
+    <div class="col-md-6 col-xs-12 mt-2 ">
+      <label class="form-label">IP Address:</label>
+      <input type="text" class="form-control" formControlName="ip_address">
+      <div class="text-danger"
+        *ngIf="ip_address?.invalid && ( ip_address?.dirty ||ip_address?.touched)">
+        <p *ngIf="ip_address?.errors?.required"> * password Confirmation is required </p>
+      </div>
+    </div>
+    <div class="text-center ">
+      <button 
+        type="submit" 
+        class="btn btn-primary btn-lg mt-5 px-5" 
+        [disabled]="signupForm.invalid" 
+        (click)="signup()">
+        Submit
+    </button>
+    </div>
+  </div>
+  </form>
+  
+</div>
+</div>
